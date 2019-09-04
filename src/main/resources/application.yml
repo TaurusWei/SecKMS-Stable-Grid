@@ -1,0 +1,84 @@
+server:
+  port: 9445
+  ssl:
+    key-store: classpath:keystore.p12
+    key-store-password: 12345678
+    keyStoreType: PKCS12
+    keyAlias: tomcat
+  servlet:
+    context-path: /SecKMS/@projectVersion@/
+#########################################################
+
+# 数据库配置
+
+#########################################################
+database:
+  dialect: org.hibernate.dialect.Oracle10gDialect
+  driver_class: oracle.jdbc.driver.OracleDriver
+  provider_class: com.alibaba.druid.support.hibernate.DruidConnectionProvider
+  url: jdbc:oracle:thin:@10.0.115.41:1521:orcl
+  username: SECKMS
+  password: Swxa1234
+  initialSize: 5
+  minIdle: 5
+  maxActive: 100
+  maxWait: 60000
+  timeBetweenEvictionRunsMillis: 20000
+  minEvictableIdleTimeMillis: 30000
+  validationQuery: SELECT 'x' from dual
+  testWhileIdle: true
+  testOnBorrow: false
+  testOnReturn: false
+  poolPreparedStatements: false
+  maxPoolPreparedStatementPerConnectionSize: 20
+  removeAbandoned: true
+  removeAbandonedTimeout: 180
+  logAbandoned: true
+
+#########################################################
+
+# jsckson的配置参数
+
+#########################################################
+spring:
+  jackson:
+    # 全局jackson配置
+    default-property-inclusion: non_null
+  parser:
+    #允许出现特殊字符和转义符
+    allow_unquoted_control_chars: true
+    #允许出现单引号
+    allow_single_quotes: true
+
+#########################################################
+
+# swagger的配置参数
+
+#########################################################
+swagger:
+  group-Name: SecKMS
+  title: SecKMS Restful Api
+  description: SecKMS restful test tools
+  license: Apache License Version 2.0
+  service-version: @projectVersion@
+  version: @projectVersion@
+  user-name: WeiBingtao
+  email: weibingtao@13156050650@163.com
+  #    显示指定包下的controller
+  base-package: com.sansec.kms.controller
+  #    对于url路径的筛选
+  antPath:
+  parameter-name: Authorization
+  parameter-type: string
+  parameter-description: token
+  type: header
+
+
+#########################################################
+
+# RestAPI
+
+#########################################################
+kmsuser: stable grid corporation of china
+tokenTimeOut: 18000000
+
